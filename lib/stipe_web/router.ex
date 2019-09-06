@@ -19,6 +19,13 @@ defmodule StipeWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/admin", StipeWeb.Admin do
+    pipe_through :browser
+
+    resources "/users", UserController
+    resources "/organizations", OrganizationController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", StipeWeb do
   #   pipe_through :api
