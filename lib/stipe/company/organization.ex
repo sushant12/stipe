@@ -4,6 +4,7 @@ defmodule Stipe.Company.Organization do
 
   schema "organizations" do
     field :name, :string
+    has_many :users, Stipe.Accounts.User, on_delete: :delete_all
 
     timestamps()
   end
@@ -12,6 +13,7 @@ defmodule Stipe.Company.Organization do
   def changeset(organization, attrs) do
     organization
     |> cast(attrs, [:name])
+    |> cast_assoc(:users)
     |> validate_required([:name])
   end
 end

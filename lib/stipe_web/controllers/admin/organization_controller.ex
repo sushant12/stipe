@@ -3,6 +3,7 @@ defmodule StipeWeb.Admin.OrganizationController do
 
   alias Stipe.Company
   alias Stipe.Company.Organization
+  alias Stipe.Accounts.User
 
   def index(conn, _params) do
     organizations = Company.list_organizations()
@@ -10,7 +11,13 @@ defmodule StipeWeb.Admin.OrganizationController do
   end
 
   def new(conn, _params) do
-    changeset = Company.change_organization(%Organization{})
+    changeset =
+      Company.change_organization(%Organization{
+        users: [
+          %User{}
+        ]
+      })
+
     render(conn, "new.html", changeset: changeset)
   end
 

@@ -35,7 +35,10 @@ defmodule Stipe.Company do
       ** (Ecto.NoResultsError)
 
   """
-  def get_organization!(id), do: Repo.get!(Organization, id)
+  def get_organization!(id) do
+    Repo.get!(Organization, id)
+    |> Repo.preload(:users)
+  end
 
   @doc """
   Creates a organization.

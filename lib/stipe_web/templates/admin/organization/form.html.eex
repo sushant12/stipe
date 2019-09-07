@@ -9,7 +9,24 @@
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
-  <%= button("Add Employee", to: "#", method: :get) %>
+  <%= link("Add Employee", to: "#") %>
+
+  <%= inputs_for f, :users, fn u -> %>
+    <div class="form-group">
+      <%= label u, :email, "Email" %>
+      <%= text_input u, :email %>
+      <%= error_tag u, :email %>
+
+    </div>
+
+    <div class="form-group">
+      <%= label u, :name, "Name" %>
+      <%= text_input u, :name %>
+      <%= error_tag u, :name %>
+
+    </div>
+    <hr/>
+  <% end %>
   <div>
     <%= submit "Save" %>
   </div>
