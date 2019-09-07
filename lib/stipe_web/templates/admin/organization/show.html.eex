@@ -1,13 +1,9 @@
-<h1>Show Organization</h1>
+<h1><%= @organization.name %></h1>
 
-<ul>
+<%= for employee <- @organization.users do %>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @organization.name %>
-  </li>
+  <%= employee.name %> (<%= employee.email %>)
 
-</ul>
-
+<% end %>
 <span><%= link "Edit", to: Routes.organization_path(@conn, :edit, @organization) %></span>
 <span><%= link "Back", to: Routes.organization_path(@conn, :index) %></span>

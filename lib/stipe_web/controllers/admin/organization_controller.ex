@@ -35,6 +35,7 @@ defmodule StipeWeb.Admin.OrganizationController do
 
   def show(conn, %{"id" => id}) do
     organization = Company.get_organization!(id)
+
     render(conn, "show.html", organization: organization)
   end
 

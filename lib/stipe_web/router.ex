@@ -16,7 +16,8 @@ defmodule StipeWeb.Router do
   scope "/", StipeWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
+    resources "/daily_updates", DailyUpdateController
   end
 
   scope "/admin", StipeWeb.Admin do

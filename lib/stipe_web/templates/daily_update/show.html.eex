@@ -1,0 +1,33 @@
+<h1>Show Daily update</h1>
+
+<ul>
+
+  <li>
+    <strong>Task number:</strong>
+    <%= @daily_update.task_number %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @daily_update.status %>
+  </li>
+
+  <li>
+    <strong>Time spent:</strong>
+    <%= @daily_update.time_spent %>
+  </li>
+
+  <li>
+    <strong>Started on:</strong>
+    <%= @daily_update.started_on %>
+  </li>
+
+  <li>
+    <strong>Remarks:</strong>
+    <%= @daily_update.remarks %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.daily_update_path(@conn, :edit, @daily_update) %></span>
+<span><%= link "Back", to: Routes.daily_update_path(@conn, :index) %></span>

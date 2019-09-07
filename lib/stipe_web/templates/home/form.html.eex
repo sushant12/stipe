@@ -1,0 +1,7 @@
+<%= form_for @conn, "/", fn f -> %>
+  <%= label f, :email %>
+  <%= email_input f, :email %>
+  <div>
+    <%= submit "Next" %>
+  </div>
+<% end %>

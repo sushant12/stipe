@@ -1,0 +1,34 @@
+<h1>Listing Daily updates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task number</th>
+      <th>Status</th>
+      <th>Time spent</th>
+      <th>Started on</th>
+      <th>Remarks</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for daily_update <- @daily_updates do %>
+    <tr>
+      <td><%= daily_update.task_number %></td>
+      <td><%= daily_update.status %></td>
+      <td><%= daily_update.time_spent %></td>
+      <td><%= daily_update.started_on %></td>
+      <td><%= daily_update.remarks %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.daily_update_path(@conn, :show, daily_update) %></span>
+        <span><%= link "Edit", to: Routes.daily_update_path(@conn, :edit, daily_update) %></span>
+        <span><%= link "Delete", to: Routes.daily_update_path(@conn, :delete, daily_update), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Daily update", to: Routes.daily_update_path(@conn, :new) %></span>
