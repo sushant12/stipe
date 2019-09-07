@@ -1,20 +1,16 @@
 # Stipe
 
-To start your Phoenix server:
+Named after my favourite UFC fighter, Stipe Miocic, as a homage for his win against Daniel Cormier in UFC 241.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Stipe, is a tool where employees post their daily updates. (Nothing fancy, nothing new)
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Features
 
-## Learn more
+- Setup Organization and add employees
+- No sign up for employees. If their email address is registered with Stipe then they will be redirected to daily update form.
+- Setup what format you want to generate the EOW(End of the week) report.
+- Add email address of managers and a time to automate the report sending process.
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+
+## Installation
