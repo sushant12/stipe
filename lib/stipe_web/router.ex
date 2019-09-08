@@ -17,6 +17,7 @@ defmodule StipeWeb.Router do
     pipe_through :browser
 
     get "/", HomeController, :index
+    post "/verify_email", HomeController, :verify_email, as: :verify_email
     resources "/daily_updates", DailyUpdateController
   end
 
