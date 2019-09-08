@@ -11,7 +11,7 @@
     <header>
       <section class="container">
         <a href="/">
-          <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" alt="Stipe, Two Times Heavy Weight champion" title="Stipe, Two Times Heavy Weight champion"/>
+          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Stipe, Two Times Heavy Weight champion" title="Stipe, Two Times Heavy Weight champion"/>
         </a>
       </section>
     </header>

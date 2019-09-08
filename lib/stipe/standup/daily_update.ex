@@ -5,7 +5,7 @@ defmodule Stipe.Standup.DailyUpdate do
 
   schema "daily_updates" do
     field :remarks, :string
-    field :started_on, :naive_datetime
+    field :started_on, :date
     field :status, :integer
     field :task_number, :string
     field :time_spent, :decimal
