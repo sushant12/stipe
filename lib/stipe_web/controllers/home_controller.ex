@@ -4,6 +4,7 @@ defmodule StipeWeb.HomeController do
   alias Stipe.Home
 
   def index(conn, _params) do
+    IO.inspect(conn)
     render(conn, "index.html")
   end
 
@@ -16,7 +17,7 @@ defmodule StipeWeb.HomeController do
 
       {:error, message} ->
         conn
-        |> put_flash(:warning, message)
+        |> put_flash(:error, message)
         |> redirect(to: Routes.home_path(conn, :index))
     end
   end
