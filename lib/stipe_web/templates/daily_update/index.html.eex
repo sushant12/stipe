@@ -3,10 +3,10 @@
 <table>
   <thead>
     <tr>
-      <th>Task number</th>
+      <th>Started On</th>
+      <th>Task Number</th>
       <th>Status</th>
-      <th>Time spent</th>
-      <th>Started on</th>
+      <th>Time Spent</th>
       <th>Remarks</th>
 
       <th></th>
@@ -15,10 +15,10 @@
   <tbody>
 <%= for daily_update <- @daily_updates do %>
     <tr>
+      <td><%= daily_update.started_on %></td>
       <td><%= daily_update.task_number %></td>
       <td><%= daily_update.status %></td>
       <td><%= daily_update.time_spent %></td>
-      <td><%= daily_update.started_on %></td>
       <td><%= daily_update.remarks %></td>
 
       <td>
@@ -31,4 +31,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Daily update", to: Routes.daily_update_path(@conn, :new) %></span>
+<span><%= link "Add", to: Routes.daily_update_path(@conn, :new) %></span>

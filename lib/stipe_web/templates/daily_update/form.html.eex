@@ -18,7 +18,7 @@
   <%= error_tag f, :time_spent %>
 
   <%= label f, :started_on %>
-  <%= datetime_select f, :started_on %>
+  <%= date_input f, :started_on %>
   <%= error_tag f, :started_on %>
 
   <%= label f, :remarks %>
