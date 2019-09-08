@@ -4,6 +4,8 @@ defmodule StipeWeb.DailyUpdateController do
   alias Stipe.Standup
   alias Stipe.Standup.DailyUpdate
 
+  plug :valid_user?
+
   def index(conn, _params) do
     daily_updates = Standup.list_daily_updates()
     render(conn, "index.html", daily_updates: daily_updates)
@@ -58,5 +60,10 @@ defmodule StipeWeb.DailyUpdateController do
     conn
     |> put_flash(:info, "Daily update deleted successfully.")
     |> redirect(to: Routes.daily_update_path(conn, :index))
+  end
+
+  defp valid_user?(conn, _opts) do
+    IO.inspect("m here")
+    conn
   end
 end

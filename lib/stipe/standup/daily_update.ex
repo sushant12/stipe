@@ -17,6 +17,8 @@ defmodule Stipe.Standup.DailyUpdate do
   def changeset(daily_update, attrs) do
     daily_update
     |> cast(attrs, [:task_number, :status, :time_spent, :started_on, :remarks])
+    |> cast_assoc(:user)
+    |> assoc_constraint(:user)
     |> validate_required([:task_number, :status, :time_spent, :started_on, :remarks])
   end
 end

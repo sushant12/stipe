@@ -9,7 +9,7 @@ defmodule Stipe.Accounts.User do
     field :email, :string
     field :name, :string
     belongs_to :organization, Organization
-    has_many :daily_updates, DailyUpdate
+    has_many :daily_updates, DailyUpdate, on_delete: :delete_all
 
     timestamps()
   end
@@ -18,7 +18,6 @@ defmodule Stipe.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :admin])
-    |> cast_assoc(:daily_updates)
     |> validate_required([:name, :email])
   end
 end

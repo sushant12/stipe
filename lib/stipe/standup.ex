@@ -7,9 +7,10 @@ defmodule Stipe.Standup do
   alias Stipe.Repo
 
   alias Stipe.Standup.DailyUpdate
+  alias Stipe.Accounts.User
 
   @doc """
-  Returns the list of daily_updates.
+  Returns User struct with list of related daily updates.
 
   ## Examples
 
@@ -18,7 +19,11 @@ defmodule Stipe.Standup do
 
   """
   def list_daily_updates do
-    Repo.all(DailyUpdate)
+    %Stipe.Accounts.User{daily_updates: daily_updates} =
+      Repo.one(from u in User, where: u.id == 4)
+      |> Repo.preload(:daily_updates)
+
+    daily_updates
   end
 
   @doc """
@@ -50,7 +55,8 @@ defmodule Stipe.Standup do
 
   """
   def create_daily_update(attrs \\ %{}) do
-    %DailyUpdate{}
+    Repo.one(from u in User, where: u.id == 4)
+    |> Ecto.build_assoc(:daily_updates, attrs)
     |> DailyUpdate.changeset(attrs)
     |> Repo.insert()
   end
