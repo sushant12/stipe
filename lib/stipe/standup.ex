@@ -19,11 +19,7 @@ defmodule Stipe.Standup do
 
   """
   def list_daily_updates do
-    %Stipe.Accounts.User{daily_updates: daily_updates} =
-      Repo.one(from u in User, where: u.id == 4)
-      |> Repo.preload(:daily_updates)
-
-    daily_updates
+    Repo.all(from d in DailyUpdate, where: d.user_id == 4, order_by: [desc: d.started_on])
   end
 
   @doc """

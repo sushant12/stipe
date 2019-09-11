@@ -15,7 +15,7 @@
   <tbody>
 <%= for daily_update <- @daily_updates do %>
     <tr>
-      <td><%= daily_update.started_on %></td>
+      <td><%= format_date(daily_update.started_on) %></td>
       <td><%= daily_update.task_number %></td>
       <td><%= daily_update.status %></td>
       <td><%= daily_update.time_spent %></td>
