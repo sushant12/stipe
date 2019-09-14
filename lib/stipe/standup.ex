@@ -18,8 +18,8 @@ defmodule Stipe.Standup do
       [%DailyUpdate{}, ...]
 
   """
-  def list_daily_updates do
-    Repo.all(from d in DailyUpdate, where: d.user_id == 4, order_by: [desc: d.started_on])
+  def list_daily_updates(%Stipe.Accounts.User{id: id}) do
+    Repo.all(from d in DailyUpdate, where: d.user_id == ^id, order_by: [desc: d.started_on])
   end
 
   @doc """
