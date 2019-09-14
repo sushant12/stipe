@@ -17,7 +17,7 @@ defmodule StipeWeb.DailyUpdateController do
   end
 
   def create(conn, %{"daily_update" => daily_update_params}, current_user) do
-    case Standup.create_daily_update(daily_update_params) do
+    case Standup.create_daily_update(current_user, daily_update_params) do
       {:ok, daily_update} ->
         conn
         |> put_flash(:info, "Daily update created successfully.")
@@ -29,18 +29,19 @@ defmodule StipeWeb.DailyUpdateController do
   end
 
   def show(conn, %{"id" => id}, current_user) do
-    daily_update = Standup.get_daily_update!(id)
+    daily_update = Standup.get_daily_update!(current_user, id)
+    IO.inspect(daily_update)
     render(conn, "show.html", daily_update: daily_update)
   end
 
   def edit(conn, %{"id" => id}, current_user) do
-    daily_update = Standup.get_daily_update!(id)
+    daily_update = Standup.get_daily_update!(current_user, id)
     changeset = Standup.change_daily_update(daily_update)
     render(conn, "edit.html", daily_update: daily_update, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "daily_update" => daily_update_params}, current_user) do
-    daily_update = Standup.get_daily_update!(id)
+    daily_update = Standup.get_daily_update!(current_user, id)
 
     case Standup.update_daily_update(daily_update, daily_update_params) do
       {:ok, daily_update} ->
@@ -54,7 +55,7 @@ defmodule StipeWeb.DailyUpdateController do
   end
 
   def delete(conn, %{"id" => id}, current_user) do
-    daily_update = Standup.get_daily_update!(id)
+    daily_update = Standup.get_daily_update!(current_user, id)
     {:ok, _daily_update} = Standup.delete_daily_update(daily_update)
 
     conn

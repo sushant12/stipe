@@ -36,7 +36,10 @@ defmodule Stipe.Standup do
       ** (Ecto.NoResultsError)
 
   """
-  def get_daily_update!(id), do: Repo.get!(DailyUpdate, id)
+  def get_daily_update!(%Stipe.Accounts.User{id: user_id}, id) do
+    Repo.one(from d in DailyUpdate, where: d.id == ^id and d.user_id == ^user_id)
+    # Repo.get!(DailyUpdate, id)
+  end
 
   @doc """
   Creates a daily_update.
@@ -50,8 +53,8 @@ defmodule Stipe.Standup do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_daily_update(attrs \\ %{}) do
-    Repo.one(from u in User, where: u.id == 4)
+  def create_daily_update(%Stipe.Accounts.User{id: id}, attrs \\ %{}) do
+    Repo.one(from u in User, where: u.id == ^id)
     |> Ecto.build_assoc(:daily_updates, attrs)
     |> DailyUpdate.changeset(attrs)
     |> Repo.insert()
