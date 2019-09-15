@@ -6,11 +6,15 @@ defmodule Stipe.Standup.DailyUpdate do
   schema "daily_updates" do
     field :remarks, :string
     field :started_on, :date
-    field :status, :integer
+    field :status, :string
     field :task_number, :string
     field :time_spent, :decimal
     belongs_to :user, User
     timestamps()
+  end
+
+  def statuses do
+    ["In Progress": "In Progress", "In Testing": "In Testing", Done: "Done"]
   end
 
   @doc false
@@ -19,6 +23,6 @@ defmodule Stipe.Standup.DailyUpdate do
     |> cast(attrs, [:task_number, :status, :time_spent, :started_on, :remarks])
     |> cast_assoc(:user)
     |> assoc_constraint(:user)
-    |> validate_required([:task_number, :status, :time_spent, :started_on, :remarks])
+    |> validate_required([:task_number, :time_spent, :started_on, :remarks])
   end
 end

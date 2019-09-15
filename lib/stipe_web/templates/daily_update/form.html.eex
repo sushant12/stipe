@@ -10,7 +10,7 @@
   <%= error_tag f, :task_number %>
 
   <%= label f, :status %>
-  <%= number_input f, :status %>
+  <%= select f, :status, DailyUpdate.statuses %>
   <%= error_tag f, :status %>
 
   <%= label f, :time_spent %>
