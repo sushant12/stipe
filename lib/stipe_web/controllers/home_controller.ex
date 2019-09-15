@@ -4,7 +4,6 @@ defmodule StipeWeb.HomeController do
   alias Stipe.Home
 
   def index(conn, _params) do
-    IO.inspect(conn)
     render(conn, "index.html")
   end
 
