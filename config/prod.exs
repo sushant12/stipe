@@ -24,6 +24,7 @@ config :stipe, StipeWeb.Repo,
   url: "${DATABASE_URL}",
   database: "",
   ssl: true,
+  show_sensitive_data_on_connection_error: true,
   # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
   pool_size: 2
 
