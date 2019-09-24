@@ -10,7 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :stipe, StipeWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  load_from_system_env: true,
+  # Needed for Phoenix 1.2 and 1.4. Doesn't hurt for 1.3.
+  http: [port: {:system, "PORT"}],
   # Without this line, your app will not start the web server!
   server: true,
   secret_key_base: "${SECRET_KEY_BASE}",
@@ -19,7 +21,7 @@ config :stipe, StipeWeb.Endpoint,
 
 config :stipe, StipeWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
+  url: "${DATABASE_URL}",
   database: "",
   ssl: true,
   # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
