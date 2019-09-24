@@ -19,7 +19,7 @@ config :stipe, StipeWeb.Endpoint,
   url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
-config :stipe, StipeWeb.Repo,
+config :stipe, Stipe.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: "${DATABASE_URL}",
   database: "",
