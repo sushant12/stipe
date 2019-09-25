@@ -1,8 +1,8 @@
-<h1><%= @organization.name %></h1>
+<h1><%= @organization.name %> <%= link "Setting", to: '/' %> </h1>
 
 <%= for employee <- @organization.users do %>
 
-  <%= employee.name %> (<%= employee.email %>)
+  <%= link "#{employee.name}(#{employee.email})", to: Routes.user_daily_update_path(@conn, :index, employee.id) %> 
 
 <% end %>
 <span><%= link "Edit", to: Routes.organization_path(@conn, :edit, @organization) %></span>

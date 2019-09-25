@@ -24,7 +24,10 @@ defmodule StipeWeb.Router do
   scope "/admin", StipeWeb.Admin do
     pipe_through :browser
 
-    resources "/users", UserController
+    resources "/users", UserController do
+      resources "/daily_updates", DailyUpdateController
+    end
+
     resources "/organizations", OrganizationController
   end
 
