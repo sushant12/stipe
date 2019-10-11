@@ -30,7 +30,6 @@ defmodule StipeWeb.DailyUpdateController do
 
   def show(conn, %{"id" => id}, current_user) do
     daily_update = Standup.get_daily_update!(current_user, id)
-    IO.inspect(daily_update)
     render(conn, "show.html", daily_update: daily_update)
   end
 
