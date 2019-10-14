@@ -9,6 +9,10 @@ defmodule StipeWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :auth do
+    plug StipeWeb.Auth
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -19,10 +23,11 @@ defmodule StipeWeb.Router do
     get "/", HomeController, :index
     post "/verify_email", HomeController, :verify_email, as: :verify_email
     resources "/daily_updates", DailyUpdateController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   scope "/admin", StipeWeb.Admin do
-    pipe_through :browser
+    pipe_through [:browser, :auth]
 
     resources "/users", UserController do
       resources "/daily_updates", DailyUpdateController

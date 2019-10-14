@@ -5,6 +5,8 @@ defmodule StipeWeb.Admin.OrganizationController do
   alias Stipe.Company.Organization
   alias Stipe.Accounts.User
 
+  plug :authenticate
+
   def index(conn, _params) do
     organizations = Company.list_organizations()
     render(conn, "index.html", organizations: organizations)
@@ -66,5 +68,16 @@ defmodule StipeWeb.Admin.OrganizationController do
     conn
     |> put_flash(:info, "Organization deleted successfully.")
     |> redirect(to: Routes.organization_path(conn, :index))
+  end
+
+  defp authenticate(conn, _) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:info, "Please enter your email address to continue.")
+      |> redirect(to: Routes.organization_path(conn, :index))
+      |> halt()
+    end
   end
 end

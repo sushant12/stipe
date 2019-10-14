@@ -4,6 +4,8 @@ defmodule StipeWeb.Admin.UserController do
   alias Stipe.Accounts
   alias Stipe.Accounts.User
 
+  plug :authenticate
+
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, "index.html", users: users)
@@ -58,5 +60,16 @@ defmodule StipeWeb.Admin.UserController do
     conn
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.user_path(conn, :index))
+  end
+
+  defp authenticate(conn, _) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:info, "Please enter your email address to continue.")
+      |> redirect(to: Routes.organization_path(conn, :index))
+      |> halt()
+    end
   end
 end

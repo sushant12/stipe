@@ -30,7 +30,6 @@ defmodule StipeWeb.DailyUpdateController do
 
   def show(conn, %{"id" => id}, current_user) do
     daily_update = Standup.get_daily_update!(current_user, id)
-    IO.inspect(daily_update)
     render(conn, "show.html", daily_update: daily_update)
   end
 
@@ -79,6 +78,7 @@ defmodule StipeWeb.DailyUpdateController do
         conn
         |> put_flash(:info, "Please enter your email address to continue.")
         |> redirect(to: Routes.home_path(conn, :index))
+        |> halt()
     end
 
     conn
