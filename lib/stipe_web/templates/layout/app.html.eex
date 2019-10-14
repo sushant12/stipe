@@ -14,6 +14,9 @@
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Stipe, Two Times Heavy Weight champion" title="Stipe, Two Times Heavy Weight champion"/>
         </a>
       </section>
+      <%= if Map.has_key?(@conn.assigns, :current_user) do %>
+        <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+      <% end %>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

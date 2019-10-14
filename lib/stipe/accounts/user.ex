@@ -32,9 +32,6 @@ defmodule Stipe.Accounts.User do
   end
 
   defp put_pass_hash(changeset) do
-    IO.puts("=============")
-    IO.inspect(changeset)
-
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(pass))

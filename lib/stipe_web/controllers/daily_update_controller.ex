@@ -78,6 +78,7 @@ defmodule StipeWeb.DailyUpdateController do
         conn
         |> put_flash(:info, "Please enter your email address to continue.")
         |> redirect(to: Routes.home_path(conn, :index))
+        |> halt()
     end
 
     conn
