@@ -76,7 +76,7 @@ defmodule StipeWeb.Admin.OrganizationController do
     else
       conn
       |> put_flash(:info, "Please enter your email address to continue.")
-      |> redirect(to: Routes.organization_path(conn, :index))
+      |> redirect(to: Routes.session_path(conn, :new))
       |> halt()
     end
   end
