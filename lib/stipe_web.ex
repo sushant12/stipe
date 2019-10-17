@@ -23,6 +23,7 @@ defmodule StipeWeb do
 
       import Plug.Conn
       import StipeWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias StipeWeb.Router.Helpers, as: Routes
     end
   end
@@ -36,11 +37,23 @@ defmodule StipeWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
+      import Phoenix.LiveView,
+        only: [
+          live_render: 2,
+          live_render: 3,
+          live_link: 1,
+          live_link: 2,
+          live_component: 2,
+          live_component: 3,
+          live_component: 4
+        ]
+
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
       import StipeWeb.ErrorHelpers
       import StipeWeb.Gettext
+
       alias StipeWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +63,7 @@ defmodule StipeWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

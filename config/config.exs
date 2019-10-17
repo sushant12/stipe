@@ -15,6 +15,9 @@ config :stipe, StipeWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "9iBnhdHXBU7xmW+DhBvIsDun/SWVMyTgP8a53Ds7UWkndQMCnRd6Z1u4uFU4k+7e",
   render_errors: [view: StipeWeb.ErrorView, accepts: ~w(html json)],
+  live_view: [
+    signing_salt: "yCS2vUnINpTZYOMQkArWB77A9Xlgp0nW"
+  ],
   pubsub: [name: Stipe.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

@@ -45,7 +45,9 @@ defmodule Stipe.MixProject do
       {:distillery, "~> 2.1", runtime: false},
       {:pbkdf2_elixir, "~> 1.0"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_live_view, git: "https://github.com/phoenixframework/phoenix_live_view.git"},
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 
