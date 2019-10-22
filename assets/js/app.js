@@ -10,7 +10,9 @@ import css from "../css/app.css"
 // Import dependencies
 //
 import "phoenix_html"
+import DynamicNested from 'dynamic_nested'
 
+document.querySelectorAll('[dynamic-nested]').forEach(element => new DynamicNested(element))
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:

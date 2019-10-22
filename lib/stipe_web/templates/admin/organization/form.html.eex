@@ -9,24 +9,26 @@
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
-  <%= link("Add Employee", to: "#") %>
+  <button type="button" dynamic-nested-add>Add</button>
+  <div id="users" dynamic-nested>
+    <%= inputs_for f, :users, fn u -> %>
+      <%= content_tag :div, [{:data, [index: u.index]}, class: 'user', dynamic_nested_index: u.index] do %>
+        <div class="form-group">
+          <%= label u, :email, "Email" %>
+          <%= text_input u, :email %>
+          <%= error_tag u, :email %>
 
-  <%= inputs_for f, :users, fn u -> %>
-    <div class="form-group">
-      <%= label u, :email, "Email" %>
-      <%= text_input u, :email %>
-      <%= error_tag u, :email %>
+        </div>
 
-    </div>
-
-    <div class="form-group">
-      <%= label u, :name, "Name" %>
-      <%= text_input u, :name %>
-      <%= error_tag u, :name %>
-
-    </div>
-    <hr/>
-  <% end %>
+        <div class="form-group">
+          <%= label u, :name, "Name" %>
+          <%= text_input u, :name %>
+          <%= error_tag u, :name %>
+        </div>
+      <% end %>
+      <hr/>
+    <% end %>
+  </div>
   <div>
     <%= submit "Save" %>
   </div>
