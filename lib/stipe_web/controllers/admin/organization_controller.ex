@@ -13,9 +13,6 @@ defmodule StipeWeb.Admin.OrganizationController do
   end
 
   def new(conn, _params) do
-    require IEx
-    IEx.pry()
-
     changeset =
       Company.change_organization(%Organization{
         users: [

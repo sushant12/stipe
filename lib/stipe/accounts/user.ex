@@ -9,6 +9,7 @@ defmodule Stipe.Accounts.User do
     field :email, :string
     field :name, :string
     field :category, :string
+    field :delete, :boolean, virtual: true
     field :password, :string, virtual: true
     field :password_hash, :string
     belongs_to :organization, Organization
@@ -20,8 +21,10 @@ defmodule Stipe.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :admin])
+    |> cast(attrs, [:name, :email, :admin, :delete])
+    |> IO.inspect()
     |> validate_required([:name, :email])
+    |> mark_for_deletion()
   end
 
   def registration_changeset(user, attrs) do
@@ -38,6 +41,14 @@ defmodule Stipe.Accounts.User do
 
       _ ->
         changeset
+    end
+  end
+
+  defp mark_for_deletion(changeset) do
+    if get_change(changeset, :delete) do
+      %{changeset | action: :delete}
+    else
+      changeset
     end
   end
 end

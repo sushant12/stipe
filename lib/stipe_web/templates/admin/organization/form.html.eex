@@ -11,7 +11,8 @@
 
   <button type="button" dynamic-nested-add>Add</button>
   <div id="users" dynamic-nested>
-    <%= inputs_for f, :users, fn u -> %>
+    <%= inputs_for f, :users, [skip_hidden: true],fn u -> %>
+      <%= checkbox u, :delete, "dynamic-nested-del-chkbox": "del-#{u.index}" %>
       <%= content_tag :div, [{:data, [index: u.index]}, class: 'user', dynamic_nested_index: u.index] do %>
         <div class="form-group">
           <%= label u, :email, "Email" %>
@@ -25,6 +26,7 @@
           <%= text_input u, :name %>
           <%= error_tag u, :name %>
         </div>
+        <button type="button" dynamic-nested-remove>Remove</button>
       <% end %>
       <hr/>
     <% end %>
